@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+      <!-- 把它设置为开发模式，发布时要设置为false -->
+    <constant name="struts.devMode" value="true" />
+    <!-- 设置在class被修改时是否热加载，发布时要设置为false -->
+    <constant name="struts.convention.classes.reload" value="true"/>
+    <!-- 自动动态方法的调用，使用这个设置后可以这样调用：action!method -->
+    <constant name="struts.enable.DynamicMethodInvocation" value="true" />
+    <!-- 编码格式 -->
+    <constant name="struts.i18n.encoding" value="UTF-8" />
+    <!-- 本地环境 -->
+    <constant name="struts.locale" value="zh_CN" />
+    
+    <package name="edu.nju.cineplex" namespace="/" extends="struts-default">
+        
+        <global-results>
+			<!-- 当返回login视图名时，转入/login.jsp页面 -->
+			<result name="login" type="redirect">index</result>
+		</global-results>
+		<action name="login" class="edu.nju.cineplex.action.LoginAction">
+            <result name="input">view/common/login.jsp</result>
+            <result name="success">view/index.jsp</result>
+        </action>
+        
+        <action name="" class="edu.nju.cineplex.action.IndexAction">
+            <result name="success">view/index.jsp</result>
+        </action>
+        <action name="index" class="edu.nju.cineplex.action.IndexAction">
+            <result name="success">view/index.jsp</result>
+        </action>
+        <action name="manage" class="edu.nju.cineplex.action.IndexAction">
+            <result name="success">view/manage.jsp</result>
+        </action>
+        <action name="logout" class="edu.nju.cineplex.action.IndexAction" method="logout">
+            <result name="success" type="redirect">index</result>
+        </action>
+        
+        <action name="register" class="edu.nju.cineplex.action.UserAction" method="register">
+            <result name="input">view/common/register.jsp</result>
+            <result name="success" type="redirect">index</result>
+        </action>
+        
+        <action name="addMovie" class="edu.nju.cineplex.action.MovieAction" method="addMovie">
+            <param name="savePath">movieCover</param>
+            <result name="success" type="redirect">manage</result>
+            <interceptor-ref name="fileUpload">
+                <!-- 文件过滤 -->
+                <param name="allowedTypes">image/bmp,image/png,image/gif,image/jpeg</param>
+                <!-- 文件大小, 以字节为单位 -->
+                <param name="maximumSize">1025956</param>
+            </interceptor-ref>
+            <!-- 默认拦截器必须放在fileUpload之后，否则无效 -->
+            <interceptor-ref name="defaultStack" />    
+        </action>
+        
+        <action name="buyTickets_*" class="edu.nju.cineplex.action.TicketAction" method="buyTickets">
+            <param name="scheduleId">{1}</param>
+            <result name="input">view/buyticket.jsp</result>
+            <result name="success" type="redirect">index#movie</result>
+        </action>
+         <action name="member_*" class="edu.nju.cineplex.action.UserAction" method="member">
+            <param name="id">{1}</param>
+            <result name="success">view/memberInfo.jsp</result>
+        </action>
+        <action name="addActivity" class="edu.nju.cineplex.action.ActivityAction" method="addActivity">
+            <result name="success" type="redirect">manage</result>
+        </action>
+        
+        
+        <!-- global-results-->
+			<!-- 当返回login视图名时，转入/login.jsp页面 -->
+			<!-- <result name="login" type="redirect">login</result> -->
+			<!-- <result name="error" type="redirect">error</result>  -->
+		<!-- /global-results -->
+    </package>
+    
+    <package name="ajax" namespace="/ajax" extends="json-default">
+        <action name="login" class="edu.nju.cineplex.action.LoginAction">
+            
+            <result name="success" type="json"></result>
+        </action>
+         <action name="addHall" class="edu.nju.cineplex.action.HallAction" method="addHall">
+            
+            <result name="success" type="json"></result>
+        </action>
+        
+         <action name="addClerk" class="edu.nju.cineplex.action.UserAction" method="addClerk">
+            
+            <result name="success" type="json"></result>
+        </action>
+        <action name="updateMember" class="edu.nju.cineplex.action.UserAction" method="updateMember">
+            
+            <result name="success" type="json"></result>
+        </action>
+        <action name="recharge" class="edu.nju.cineplex.action.RechargeAction">
+            
+            <result name="success" type="json"></result>
+        </action>
+        
+        <action name="convert" class="edu.nju.cineplex.action.RechargeAction" method="convert">
+            
+            <result name="success" type="json"></result>
+        </action>
+        <action name="uplevel" class="edu.nju.cineplex.action.RechargeAction" method="uplevel">
+            
+            <result name="success" type="json"></result>
+        </action>
+        
+        <action name="addSchedule" class="edu.nju.cineplex.action.ScheduleAction" method="addSchedule">
+            
+            <result name="success" type="json"></result>
+        </action>
+        
+        <action name="checkSchedule" class="edu.nju.cineplex.action.ScheduleAction" method="checkSchedule">
+            
+            <result name="success" type="json"></result> 
+            
+        </action>
+        <action name="buyTicket" class="edu.nju.cineplex.action.TicketAction" method="buyTicket">
+            
+            <result name="success" type="json"></result> 
+            
+        </action>
+        <action name="updateSchedule_*" class="edu.nju.cineplex.action.ScheduleAction" method="updateSchedule">
+            <param name="checkId">{1}</param>
+            <result name="success" type="json"></result> 
+            
+        </action>
+        
+        <action name="attendActivity" class="edu.nju.cineplex.action.ActivityAction" method="attendActivity">
+            <result name="success" type="json"></result>
+        </action>
+    </package>
+    
+</struts>
+
