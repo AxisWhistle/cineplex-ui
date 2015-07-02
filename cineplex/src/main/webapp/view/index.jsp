@@ -8,7 +8,6 @@
 <title>Cineplex-Manager</title>
 <%@ include file="common/css.jsp"%>
 <%@ include file="common/js.jsp"%>
-
 </head>
 <body class="no-trans">
 
@@ -69,12 +68,18 @@
 
 										<!-- Collect the nav links, forms, and other content for toggling -->
 										<div class="collapse navbar-collapse scrollspy smooth-scroll" id="navbar-collapse-1">
-											<ul class="nav navbar-nav navbar-right">
+											<ul class="nav navbar-nav">
 												<li class="active"><a href="#banner">首页</a></li>
 												<li><a href="#movie">正在热映</a></li>
 												<li><a href="#future">即将上映</a></li>
-												
-												
+												<li>
+											</ul>
+											<form class="navbar-form navbar-left" role="search">
+													<div class="form-group">
+												    	<input type="text" class="form-control" placeholder="Search">
+												  	</div>
+											</form>
+											<ul class="nav navbar-nav navbar-right">
 												<s:if test="#session.user==null">
 													<li><a href="#" data-toggle="modal" data-target="#login">登录</a></li>
 													<li><a href="#" data-toggle="modal" data-target="#register">注册</a></li>
@@ -123,31 +128,39 @@
 			<div class="banner-caption">
 				<div class="container">
 					<div class="row">
-						<div class="col-md-8 col-md-offset-2 object-non-visible" data-animation-effect="fadeIn">
-							<h1 class="text-center">欢迎来到 <span>Cineplex</span></h1>
-							
-												<s:if test="#session.user==null">
-													<p class="lead text-center">你可以在此了解最近上映的电影，成为会员即可随时订票购票，更有精彩活动不容错过.</p>
-												</s:if>
-												<s:elseif test="#session.user.gid=='2'">
-													<p class="lead text-center">您的会员账号为${sessionScope.user.id},我们将竭诚为您服务</p>
-													
-												</s:elseif>
-												<s:elseif test="#session.user.gid=='1'">
-													<p class="lead text-center">您可以通过此平台进行影院的影片管理和销售.</p>
-													
-												</s:elseif>
-												<s:elseif test="#session.user.gid=='0'">
-													<p class="lead text-center">您可以通过此平台管理影院统计信息.</p>
-													
-												</s:elseif>
-												<s:else><p class="lead text-center">很抱歉未能识别您的信息，请联系管理员.</p></s:else>
-												
-												
-							
-							
-							
-						</div>
+						<div class="flexslider">
+							<ul class="slides">
+								<li>
+						        	<img src="assets/images/s1.jpg" alt="" />
+									<div class="slides_info">
+										<h4>FlexSlider!</h4>
+										<p>多功能图片切换效果</p>
+									</div>
+								</li>
+								<li>
+									<img src="assets/images/sc2.jpg" alt="" />
+									<div class="slides_info">
+										<h4>jquery flexslider滑块幻灯片插件图片和文字结合焦点图片切换</h4>
+									</div>
+								</li>
+								<li>
+									<img src="assets/images/s3.jpg" alt="" />
+									<div class="slides_info">
+										<h4>FlexSlider</h4>
+										<p>FlexSlider是一款基于的jQuery内容滚动插件。它能让你轻松的创建内容滚动的效果，具有非常高的可定制性。它是将UL列表转换成内容滚动的列表，可以自动播放，或者使用导航按钮和键盘来控制。<a href="http://www.woothemes.com/flexslider/" target="_blank" rel="nofollow">FlexSlider官网</a> <a href="http://www.helloweba.com/view-blog-265.html" target="_blank">中文使用教程</a></p>
+									</div>
+								</li>
+								<li>
+									<img src="assets/images/s4.jpg" alt="" />
+									<div class="slides_info">
+
+										<h4>FlexSlider</h4>
+										<p>FlexSlider is a free responsive jQuery slider toolkit. Supported in all major browsers with custom navigation options and touch swipe support.</p>
+									</div>
+								</li>
+							</ul>
+						</div>		
+											
 					</div>
 				</div>
 			</div>

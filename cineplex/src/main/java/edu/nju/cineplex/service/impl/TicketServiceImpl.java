@@ -39,21 +39,31 @@ public class TicketServiceImpl implements TicketService {
 	public boolean buyTickets(String userId, List<Ticket> tickets) {
 		double price=0;
 		User user=userDao.load(userId);
-		Member member=user.getMember();
-		Discount dis=member.getDisaccount();
+		Member member=null;
+		Discount dis = new Discount();
+		dis.setDisaccount(1);
+		if(user.getGid()=='2'){
+			member=user.getMember();
+			dis=member.getDisaccount();
+		}
+		
+		
 		/**
 		 * 会员卡扣除票价
 		 */
 		
 		for(Ticket ticket:tickets){
 			ticket.setUser(user);
-			ticket.setPrice(ticket.getPrice()*dis.getDisaccount());
-			user.addTicket(ticket);			
+			
+					
 			price+=ticket.getPrice();
 			if(user.getGid()!='2')
 				ticket.setCash(true);
-			else
+			else{
+				ticket.setPrice(ticket.getPrice()*dis.getDisaccount());
 				ticket.setCash(false);
+			}
+			user.addTicket(ticket);	
 		}
 		
 		
