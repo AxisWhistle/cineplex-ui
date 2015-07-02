@@ -1,0 +1,42 @@
+h1, h2, h3, h4, h5, h6 {
+	margin-top: 0px;
+}
+
+.selected-item {
+	backgroud-color: #55acee
+}
+
+.property-list li {
+	float: left;
+	margin: auto 10px;
+	list-style: none;
+}
+
+.property-div>h5 {
+	display: inline-block;
+	margin: 0px auto;
+}
+
+.property-div>ul {
+	display: inline-block;
+	margin: 0px auto;
+}
+
+.search-div>h5, .search-div>input {
+	display: inline-block;
+}
+
+.property-div>h5, .search-div>h5 {
+	min-width: 100px;
+}
+
+.btn-select {
+	margin: 10px auto;
+	min-width: 120px;
+}
+
+.ui_pic, .ui_text {
+	display: inline-block;
+	margin: auto 10px;
+	vertical-align: top;
+}

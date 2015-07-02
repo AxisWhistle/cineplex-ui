@@ -162,7 +162,9 @@
 				<h1 class="text-center title" id="movie">正在热映</h1>
 				<div class="separator"></div>
 				
-				<s:include value="movieList.jsp"></s:include>
+				<s:include value="features.jsp"></s:include>
+				
+				<%-- <s:include value="movieList.jsp"></s:include> --%>
 				
 			</div>
 		</div>
