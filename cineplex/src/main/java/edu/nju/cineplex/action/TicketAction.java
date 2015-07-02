@@ -88,8 +88,8 @@ public class TicketAction extends BaseAction {
 	public String buyTicket(){
 		User user=(User) session.get("user");
 		msg="0";
-		System.out.println(cash);
-		System.out.println(id);
+//		System.out.println(cash);
+//		System.out.println(id);
 		
 		String buyer=user.getId();
 		if(user.getGid()!='2'&&cash==0 ){
@@ -110,7 +110,7 @@ public class TicketAction extends BaseAction {
 		List<Ticket> tickets=new ArrayList<Ticket>();
 		for(String s:cell){
 			Ticket t=new Ticket();
-			System.out.println(s);
+//			System.out.println(s);
 			Schedule schedule=(Schedule)session.get("schedule");
 			t.setSchedule(schedule);
 			t.setPrice(schedule.getPrice());

@@ -19,6 +19,8 @@
 		<!-- Custom Scripts -->
 		<script type="text/javascript" src="assets/js/custom.js"></script>
 		
+		<script type="text/javascript" src="assets/js/jquery.flexslider-min.js"></script>
+		
 		<script src="assets/js/jquery.dataTables.js"></script>
 		<script src="assets/plugins/validator/js/bootstrapValidator.js"></script>
 		<script src="assets/js/icheck.js"></script>				

@@ -3,3 +3,4 @@ target/*
 
 # IDE settings
 .settings/*
+src/main/resources/applicationContext.xml
