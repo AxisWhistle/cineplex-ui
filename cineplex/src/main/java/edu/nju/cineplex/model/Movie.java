@@ -24,7 +24,7 @@ public class Movie {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 	private String name;
-	private String cover="assets/images/portfolio-1.jpg";
+	private String cover="assets/images/1.jpg";
 	@Column(columnDefinition="text")
 	private String introduction;//影片介绍
 	private String actor;//主演

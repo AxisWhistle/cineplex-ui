@@ -51,7 +51,7 @@
                 <!-- 文件过滤 -->
                 <param name="allowedTypes">image/bmp,image/png,image/gif,image/jpeg</param>
                 <!-- 文件大小, 以字节为单位 -->
-                <param name="maximumSize">1025956</param>
+                <param name="maximumSize">10259566</param>
             </interceptor-ref>
             <!-- 默认拦截器必须放在fileUpload之后，否则无效 -->
             <interceptor-ref name="defaultStack" />    
