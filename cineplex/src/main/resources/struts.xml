@@ -62,6 +62,15 @@
             <result name="input">view/buyticket.jsp</result>
             <result name="success" type="redirect">index#movie</result>
         </action>
+        
+        <action name="search" class="edu.nju.cineplex.action.MovieAction" method="search">
+            <result name="success" type="redirect">index#search</result>
+        </action>
+        
+        <action name="dayMovieSchedule" class="edu.nju.cineplex.action.ScheduleAction" method="dayMovieSchedule">
+            <result name="success">index#movie</result>
+        </action>
+        
          <action name="member_*" class="edu.nju.cineplex.action.UserAction" method="member">
             <param name="id">{1}</param>
             <result name="success">view/memberInfo.jsp</result>

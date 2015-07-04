@@ -69,6 +69,12 @@ public class ScheduleAction extends BaseAction {
 		return SUCCESS;
 	}
 	
+	public String dayMovieSchedule(){
+		return SUCCESS;
+	}
+	
+	
+	
 	public String updateSchedule(){
 		msg="0";
 		System.out.println(checkId);

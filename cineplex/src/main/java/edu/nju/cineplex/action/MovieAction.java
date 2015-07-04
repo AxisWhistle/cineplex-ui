@@ -34,7 +34,9 @@ public class MovieAction extends BaseAction {
 		return SUCCESS;
 	}
 	
-	
+	public String search(){
+		return SUCCESS;
+	}
 	
 	private String uploadCover(){
 		String result=null;
