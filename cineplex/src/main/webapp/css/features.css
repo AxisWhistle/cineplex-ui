@@ -2,8 +2,21 @@ h1, h2, h3, h4, h5, h6 {
 	margin-top: 0px;
 }
 
-.selected-item {
-	backgroud-color: #55acee
+.grid {
+	width: 80%;
+	margin: auto auto;
+}
+
+.movie-list {
+	padding-left: 90px;
+}
+
+.movie-actor-list {
+	width: 600px;
+}
+
+.is-checked {
+	color: #55acee
 }
 
 .property-list li {
