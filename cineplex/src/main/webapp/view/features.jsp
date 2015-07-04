@@ -336,7 +336,8 @@
 					alt="我亲爱的小淘气" height="160" width="120">
 				</a>
 				<p class="mt10">
-					<a class="btn btn-primary" href="/movie/240683875" target="_blank"><span>选座购票</span></a>
+					<a class="btn btn-primary btn-select" href="/movie/240683875"
+						target="_blank"><span>选座购票</span></a>
 				</p>
 			</div>
 			<div class="ui_text">
