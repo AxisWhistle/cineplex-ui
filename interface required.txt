@@ -1,0 +1,82 @@
+一、interface required---------by Wang siyi
+1. 获取电影详细信息
+2. 根据电影、日期获取放映计划
+3. 放映计划详细信息：放映时间（字符串）、放映厅、剩余票数、选座购票链接
+
+二、response from Janehyt：我打算把前台要显示的数据能封装好不要你们分析处理就尽量封装好
+备注：日期和时间都分开，日期仅包括年月日，如2015-7-3，时间为24消失制，如19:30，前后台交互的时候都用String
+
+1. MovieAction.detail(int id);
+    返回值：MovieInfo类{
+            int id;
+            String cover;//封面url（暂时是1条url，如果有时间做成多张图片的那种吧，url在前端分析一下，多个图片链接用;隔开）
+            String name;//影片名称
+            String introduction;//影片介绍
+            String actor;//主演,可能有多个，用;隔开
+            String type;//影片类型，可能有多个，用;隔开
+            int duration;//影片时长,单位为分钟
+            String director；//导演, 可能有多个，用;隔开
+            String language；//语言
+            String onTime;//上线日期
+        }
+2. ScheduleAction.dayMovieSchedule(int movieId, String startDay,String endDay);
+    //这边前台想要什么时间段的放映计划列表可以自定，假如只要2015-7-3的，可以设定值为(xx,2015-7-3,2015-7-4)
+    返回值： List<ScheduleInfo>
+3. ScheduleInfo类｛
+            int id;//对应放映计划的id
+            String day; //放映日期----------如果想做成格瓦拉那样的，在js根据这个字段处理分组就行
+            String weekday;//周几
+            String time;//放映时间
+            String hall; //放映厅名字
+            int remain;//余票
+            int total; //总票数
+            MovieInfo movie;
+            double price; //原价
+    ｝//选座购票链接参见movieList.jsp,固定为buyTickets_${id}
+
+
+
+三、 以下接口是我觉得你们可能会用到的：
+1. ScheduleAction.recentMovie(String startDay,String endDay);//假如只要2015-7-3的，可以设定值为(xx,2015-7-3,2015-7-4)
+    返回值：List<MovieInfo>,MovieInfo类参考（二、1.）
+    建议： 正在热映取7天
+2. 即将上线：
+    MovieAction.forwarding();
+    返回值：List<MovieInfo>
+    样式与正在热映一样吧，没有选座购票的按钮，可以查看详情
+3. 选座购票页面，座位图绘制所需的seat和column变量不变，参考原代码即可
+    schedule变量的信息会有变动，直接使用scheduleInfo
+    用户折扣的获取以及控制也参考原代码即可
+4. 如果购票失败，与原来没有区别，如果购票成功，除了成功信息，还会有List<TicketInfo>信息，
+        TicketInfo类 {
+           int id;//对应电影票id
+           String hall;//放映厅名字
+           String day; //放映日期
+           String time;//放映时间
+           String seat; //座位号，格式为X排X座
+           String name;//电影名称
+           int movieId; //可以根据此id跳转到电影详情页面
+           double price; //原价
+           String discount; // 该电影票的折扣值,如7折，75折。
+           double pay; //实际票价
+    }
+5. 搜索和筛选的话，返回值用List<MovieInfo>
+    
+    我有两种方案：
+    1）用前端的isotope插件实现分类筛选
+    2）如果后台写可能有点麻烦，每次搜索、筛选的时候，把参数和值封装成map给我，key的值为属性名，value的值为筛选值
+        ｛
+            "type": "喜剧；动作",
+            "actor": "梁朝伟",
+            "director": "李安"，
+            "language":"英语",
+            //以上都属于筛选的字段，多个用；隔开，打算采用完全匹配
+            "name":"三个",
+            //上面的字段内容是搜索框里输入的内容，打算模糊匹配，只搜索电影名称字段
+            "filterType":0,
+            //上面的是必须的内容，0表示全部，1表示正在热映,2表示即将上映
+            "startDay":"2015-7-3",
+            "endDay":"2015-7-4"
+            //filterType为1的时候需要必须要有这两个字段，可以给用户自定义时间
+        ｝
+        除非标明为必须，可以缺少一些字段，反正就是有的话就方map里面。。
