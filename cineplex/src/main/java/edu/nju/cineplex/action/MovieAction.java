@@ -4,11 +4,14 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
 import edu.nju.cineplex.model.Movie;
 import edu.nju.cineplex.service.MovieService;
+import edu.nju.cineplex.vo.MovieInfo;
 
 public class MovieAction extends BaseAction {
 
@@ -23,6 +26,8 @@ public class MovieAction extends BaseAction {
     // 接受依赖注入的属性
 	private String savePath;
 	
+	private String name;
+	
 	public String addMovie(){
 		System.out.println(movie.getOffTime());
 		String cover= this.uploadCover();
@@ -35,6 +40,20 @@ public class MovieAction extends BaseAction {
 	}
 	
 	public String search(){
+		List<MovieInfo> movieInfos=(List<MovieInfo>) session.get("movielist");
+		List<MovieInfo> forwardInfos=(List<MovieInfo>) session.get("forwardlist");
+		List<MovieInfo> searchInfos=new ArrayList<MovieInfo>();
+		for(int i =0;i<movieInfos.size();i++){
+			if(movieInfos.get(i).getName().contains(name)){
+				searchInfos.add(movieInfos.get(i));
+			}
+		}
+		for(int i =0;i<forwardInfos.size();i++){
+			if(forwardInfos.get(i).getName().contains(name)){
+				searchInfos.add(forwardInfos.get(i));
+			}
+		}
+		session.put("searchlist", searchInfos);
 		return SUCCESS;
 	}
 	
@@ -128,6 +147,14 @@ public class MovieAction extends BaseAction {
 
 	public void setSavePath(String savePath) {
 		this.savePath = savePath;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 	
 

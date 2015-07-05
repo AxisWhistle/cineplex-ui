@@ -64,7 +64,7 @@
         </action>
         
         <action name="search" class="edu.nju.cineplex.action.MovieAction" method="search">
-            <result name="success" type="redirect">index#search</result>
+            <result name="success">view/search.jsp</result>
         </action>
         
         <action name="dayMovieSchedule" class="edu.nju.cineplex.action.ScheduleAction" method="dayMovieSchedule">
