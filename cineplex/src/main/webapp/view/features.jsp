@@ -2,17 +2,15 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="java.util.Date"%>
 <link rel="stylesheet" type="text/css" href="css/features.css" />
 <section class="movie-list">
 	<div class="property-div button-group filters-button-group">
 		<h5>语言</h5>
 		<ul class="property-list button-lang-group">
-			<li>
-				<a class="btn button is-checked" data-filter="*">全部</a>
-			</li>
-			<li>
-				<a class="btn button" data-filter="lang">国语</a>
-			</li>
+			<li><a class="btn button is-checked" data-filter="*">全部</a></li>
+			<li><a class="btn button" data-filter="lang">国语</a></li>
 			<li><a class="btn button" data-filter="lang">英语</a></li>
 		</ul>
 	</div>
@@ -35,8 +33,9 @@
 	</div>
 	<div class="search-div">
 		<h5>影片查询</h5>
-		
-		<input type="text" placeholder="请输入搜索关键字" name=""/>
+		<s:form action="search">
+			<input type="text" placeholder="请输入搜索关键字" name="name" />
+		</s:form>
 		<button>
 			<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
 		</button>
@@ -232,30 +231,50 @@
 				</div>
 			</div>
 		</li>
-		<c:forEach items="${movieList }" var="movie">
-			<li class="grid-item">
+		<c:forEach items="${movielist }" var="movie">
+			<li class="grid-item" style="display: block;">
 				<div class="ui_media">
 					<div class="ui_pic">
-						<img src="${movie.cover }" alt="${movie.name }" height="160"
-							width="120">
+						<a href="/movie/215806087" class="ui_movieType" target="_blank"
+							title="${movie.name }"> <img src="${movie.cover }"
+							alt="${movie.name }" height="160" width="120">
+						</a>
 						<p class="mt10">
-							<a class="btn btn-primary btn-select" href="#" target="_blank"><span>选座购票</span></a>
+							<c:url var="dayMovieScheduleUrl"
+								value="/cineplex/dayMovieSchedule">
+								<c:param name="startDate"
+									value="<%=new SimpleDateFormat("yyyy-MM-dd")
+								.format(new Date(System.currentTimeMillis()))%>"></c:param>
+								<c:param name="endDate"
+									value="<%=new SimpleDateFormat("yyyy-MM-dd")
+								.format(new Date(System.currentTimeMillis() + 7
+										* 24 * 3600 * 1000))%>"></c:param>
+							</c:url>
+
+							<a class="btn btn-primary btn-select"
+								href="${dayMovieScheduleUrl }" target="_blank"><span>选座购票</span></a>
 						</p>
 					</div>
 					<div class="ui_text">
 						<div class="title">
 							<h2>
-								<a href="#" title="${movie.name }" target="_blank"
-									class="color3 movie-name">${movie.name }</a>
+								<a href="/movie/215806087" title="${movie.name }"
+									target="_blank" class="color3 movie-name">${movie.name }</a>
 							</h2>
 						</div>
-						<p>类型：${movie.type }</p>
-						<p>语言：${movie.language }</p>
 						<p>
-							片场 ： <span class="movie-duration-num">${movie.duration }分钟</span>
+							类型：<span class="movie-type">${movie.type }</span>
 						</p>
-						<p>导演：${movie.director }</p>
-						<p>主演：${movie.actor }</p>
+						<p>
+							语言：<span class="movie-lang">${movie.language }</span>
+						</p>
+						<p>
+							片场 ： <span class="movie-duration-num">${movie.duration }</span>
+						</p>
+						<p>
+							导演：<span class="movie-director">${movie.director }</span>
+						</p>
+						<p class="movie-actor-list">主演：${movie.actor }</p>
 					</div>
 				</div>
 			</li>
