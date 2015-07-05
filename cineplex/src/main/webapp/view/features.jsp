@@ -4,44 +4,39 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <link rel="stylesheet" type="text/css" href="css/features.css" />
 <section class="movie-list">
-	<div>
-		<h5>筛选条件</h5>
-		<ul class="property-list">
-
-		</ul>
-	</div>
 	<div class="property-div button-group filters-button-group">
 		<h5>语言</h5>
 		<ul class="property-list button-lang-group">
 			<li>
-				<button class="button is-checked" data-filter="*">全部</button>
+				<a class="btn button is-checked" data-filter="*">全部</a>
 			</li>
 			<li>
-				<button class="button" data-filter="lang">国语</button>
+				<a class="btn button" data-filter="lang">国语</a>
 			</li>
-			<li><button class="button" data-filter="lang">英语</button></li>
+			<li><a class="btn button" data-filter="lang">英语</a></li>
 		</ul>
 	</div>
 	<div class="property-div button-group filters-button-group">
 		<h5>影片类型</h5>
 		<ul class="property-list button-type-group">
-			<li><button class="button is-checked" data-filter="*">全部</button></li>
-			<li><button class="button" data-filter="type">动作</button></li>
-			<li><button class="button" data-filter="type">喜剧</button></li>
-			<li><button class="button" data-filter="type">爱情</button></li>
-			<li><button class="button" data-filter="type">科幻</button></li>
-			<li><button class="button" data-filter="type">魔幻</button></li>
-			<li><button class="button" data-filter="type">灾难</button></li>
-			<li><button class="button" data-filter="type">恐怖</button></li>
-			<li><button class="button" data-filter="type">纪录</button></li>
-			<li><button class="button" data-filter="type">犯罪</button></li>
-			<li><button class="button" data-filter="type">战争</button></li>
-			<li><button class="button" data-filter="type">冒险</button></li>
+			<li><a class="btn button is-checked" data-filter="*">全部</a></li>
+			<li><a class="btn button" data-filter="type">动作</a></li>
+			<li><a class="btn button" data-filter="type">喜剧</a></li>
+			<li><a class="btn button" data-filter="type">爱情</a></li>
+			<li><a class="btn button" data-filter="type">科幻</a></li>
+			<li><a class="btn button" data-filter="type">魔幻</a></li>
+			<li><a class="btn button" data-filter="type">灾难</a></li>
+			<li><a class="btn button" data-filter="type">恐怖</a></li>
+			<li><a class="btn button" data-filter="type">纪录</a></li>
+			<li><a class="btn button" data-filter="type">犯罪</a></li>
+			<li><a class="btn button" data-filter="type">战争</a></li>
+			<li><a class="btn button" data-filter="type">冒险</a></li>
 		</ul>
 	</div>
 	<div class="search-div">
 		<h5>影片查询</h5>
-		<input type="text" placeholder="请输入搜索关键字" />
+		
+		<input type="text" placeholder="请输入搜索关键字" name=""/>
 		<button>
 			<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
 		</button>

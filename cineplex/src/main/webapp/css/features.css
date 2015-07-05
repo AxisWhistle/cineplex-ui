@@ -2,11 +2,19 @@ h1, h2, h3, h4, h5, h6 {
 	margin-top: 0px;
 }
 
+.button {
+	min-width: 5px;
+	width: 50px;
+	padding:0px 0px;
+}
+
 .grid {
 	width: 80%;
 	margin: auto auto;
 }
-
+.grid-item{
+	list-style: none;
+}
 .movie-list {
 	padding-left: 90px;
 }
@@ -16,7 +24,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .is-checked {
-	color: #55acee
+	backgroud-color: #55acee
 }
 
 .property-list li {
