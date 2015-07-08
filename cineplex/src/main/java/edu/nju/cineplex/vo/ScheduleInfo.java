@@ -1,5 +1,14 @@
 package edu.nju.cineplex.vo;
 
+import java.util.Calendar;
+import java.util.Set;
+import java.util.jar.Attributes.Name;
+
+import edu.nju.cineplex.model.Hall;
+import edu.nju.cineplex.model.Schedule;
+import edu.nju.cineplex.model.Ticket;
+import edu.nju.cineplex.util.DateFormater;
+
 public class ScheduleInfo {
 	
 	 int id;//对应放映计划的id
@@ -11,6 +20,22 @@ public class ScheduleInfo {
      int total; //总票数
      MovieInfo movie;
      double price; //原价
+     String[] weeks={"周日","周一","周二","周三","周四","周五","周六"};
+     public ScheduleInfo(Schedule schedule){
+    	 id=schedule.getId();
+    	 Calendar calendar = schedule.getTime();
+    	 day = DateFormater.CalendarToString(calendar);
+    	 weekday=weeks[calendar.get(Calendar.DAY_OF_WEEK)];
+    	 time = calendar.get(Calendar.HOUR_OF_DAY)+":"+calendar.get(Calendar.MINUTE);
+    	 Hall h=schedule.getHall();
+    	 hall = h.getName();
+    	 total = h.getSeatrow()*h.getSeatcolumn();
+    	 remain = total-schedule.getTickets().size();
+    	 movie = new MovieInfo(schedule.getMovie());
+    	 price = schedule.getPrice();
+     }
+     
+     
 	public ScheduleInfo(int id, String day, String weekday, String time,
 			String hall, int remain, int total, MovieInfo movie, double price) {
 		super();

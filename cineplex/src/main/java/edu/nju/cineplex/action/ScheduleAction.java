@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -11,6 +12,7 @@ import edu.nju.cineplex.model.*;
 import edu.nju.cineplex.service.HallService;
 import edu.nju.cineplex.service.MovieService;
 import edu.nju.cineplex.service.ScheduleService;
+import edu.nju.cineplex.util.DateFormater;
 import edu.nju.cineplex.vo.MovieInfo;
 import edu.nju.cineplex.vo.ScheduleInfo;
 
@@ -78,29 +80,68 @@ public class ScheduleAction extends BaseAction {
 	}
 	
 	public String dayMovieSchedule(){
-		Calendar day=Calendar.getInstance();
-		List<MovieInfo> movieInfos=(List<MovieInfo>) session.get("movielist");
-		MovieInfo m = null;
-		String[] weeks={"周日","周一","周二","周三","周四","周五","周六"};
-	    if(movieId<movieInfos.size()){
-	    	m=movieInfos.get(movieId);
-	    }
-	    schedulelist=new ArrayList<List<ScheduleInfo>>();
-	    int scheduleId=0;
-	    for(int i =0;i<7;i++){
-	    	List<ScheduleInfo> scheduleInfos=new ArrayList<ScheduleInfo>();
-	    	String dayString=day.get(Calendar.YEAR)+"-"+day.get(Calendar.MONTH)+"-"+day.get(Calendar.DAY_OF_MONTH);
-	    	String weekString=weeks[day.get(Calendar.DAY_OF_WEEK)];
-	    	for(int j = 0; j<5%(i+1);j++){
-	    		ScheduleInfo s =new ScheduleInfo(scheduleId, dayString, weekString,(10+j)+":45", "放映厅"+j, 120, 140, m, 80);
-	    		scheduleInfos.add(s);
-	    	}
-	    	schedulelist.add(scheduleInfos);
-	    	day.add(Calendar.DAY_OF_MONTH, 1);
-	    
-	    }
-	    	
-	   
+		
+		Movie m = movieService.load(movieId);
+		Set<Schedule> sc=m.getSchedules();
+//		System.out.println(sc.size());
+		String[] c = new String[7];
+		Calendar nowCalendar = Calendar.getInstance();
+		schedulelist= new ArrayList<List<ScheduleInfo>>();
+		for(int i = 0;i<7;i++){
+			Calendar ca = Calendar.getInstance();
+			ca.add(Calendar.DATE,i);
+			c[i] = DateFormater.CalendarToString(ca);
+			List<ScheduleInfo> sInfos=new ArrayList<ScheduleInfo>();
+			schedulelist.add(sInfos);
+		}
+		
+		for(Schedule s:sc){
+			Calendar cs = s.getTime();
+			String day=DateFormater.CalendarToString(cs);
+			for(int i = 0;i<7;i++){
+				if(day.equals(c[i])){
+//					System.out.println("here");
+					if(cs.after(nowCalendar)){
+						schedulelist.get(i).add(new ScheduleInfo(s));
+					}
+					
+					break;
+				}
+			}
+			
+		}
+//		int i = 0;
+//		for(List<ScheduleInfo> l :schedulelist){
+//			System.out.println("i");
+//			for(ScheduleInfo ss:l){
+//				System.out.println(ss.getMovie().getName()+"---"+ss.getDay()+ss.getWeekday()+ss.getTime());
+//			}
+//		}
+		
+		
+//		Calendar day=Calendar.getInstance();
+//		List<MovieInfo> movieInfos=(List<MovieInfo>) session.get("movielist");
+//		MovieInfo m = null;
+//		String[] weeks={"周日","周一","周二","周三","周四","周五","周六"};
+//	    if(movieId<movieInfos.size()){
+//	    	m=movieInfos.get(movieId);
+//	    }
+//	    schedulelist=new ArrayList<List<ScheduleInfo>>();
+//	    int scheduleId=0;
+//	    for(int i =0;i<7;i++){
+//	    	List<ScheduleInfo> scheduleInfos=new ArrayList<ScheduleInfo>();
+//	    	String dayString=day.get(Calendar.YEAR)+"-"+day.get(Calendar.MONTH)+"-"+day.get(Calendar.DAY_OF_MONTH);
+//	    	String weekString=weeks[day.get(Calendar.DAY_OF_WEEK)];
+//	    	for(int j = 0; j<5%(i+1);j++){
+//	    		ScheduleInfo s =new ScheduleInfo(scheduleId, dayString, weekString,(10+j)+":45", "放映厅"+j, 120, 140, m, 80);
+//	    		scheduleInfos.add(s);
+//	    	}
+//	    	schedulelist.add(scheduleInfos);
+//	    	day.add(Calendar.DAY_OF_MONTH, 1);
+//	    
+//	    }
+//	    	
+//	   
 		return SUCCESS;
 	}
 	

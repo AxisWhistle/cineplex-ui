@@ -243,12 +243,9 @@
 							<c:url var="dayMovieScheduleUrl"
 								value="/cineplex/dayMovieSchedule">
 								<c:param name="startDate"
-									value="<%=new SimpleDateFormat("yyyy-MM-dd")
-								.format(new Date(System.currentTimeMillis()))%>"></c:param>
+									value="1"></c:param>
 								<c:param name="endDate"
-									value="<%=new SimpleDateFormat("yyyy-MM-dd")
-								.format(new Date(System.currentTimeMillis() + 7
-										* 24 * 3600 * 1000))%>"></c:param>
+									value="2"></c:param>
 							</c:url>
 
 							<a class="btn btn-primary btn-select"

@@ -16,7 +16,7 @@ import edu.nju.cineplex.service.ScheduleService;
 @Service
 public class ScheduleServiceImpl implements ScheduleService {
 	
-	private final static int MAXPREDAY=700;
+	private final static int MAXPREDAY=7;
 
 	@Autowired
 	private ScheduleDao scheduleDao;
@@ -45,8 +45,8 @@ public class ScheduleServiceImpl implements ScheduleService {
 		Calendar toCheck=schedule.getTime();
 		Calendar s=Calendar.getInstance();
 		Calendar e=Calendar.getInstance();
-		s.setTimeInMillis(movie.getOnTime().getTime());
-		e.setTimeInMillis(movie.getOffTime().getTime());
+		s.setTimeInMillis(movie.getOnTime().getTimeInMillis());
+		e.setTimeInMillis(movie.getOffTime().getTimeInMillis());
 		e.add(Calendar.DATE, 1);
 		if(toCheck.after(e)||toCheck.before(s)){
 			error="放映时间不在电影上映期间";
@@ -124,7 +124,7 @@ public class ScheduleServiceImpl implements ScheduleService {
 
 		Calendar now=Calendar.getInstance();
 		Calendar end=Calendar.getInstance();
-		end.add(Calendar.DAY_OF_MONTH, MAXPREDAY);
+		end.add(Calendar.DATE, MAXPREDAY);
 		
 		return scheduleDao.availableSchedules(now,end);
 	}
@@ -132,6 +132,15 @@ public class ScheduleServiceImpl implements ScheduleService {
 	@Override
 	public Schedule load(int scheduleId) {
 		return scheduleDao.load(scheduleId);
+	}
+
+	@Override
+	public List<Schedule> futureSchedules() {
+		Calendar now=Calendar.getInstance();
+		Calendar end=Calendar.getInstance();
+		end.add(Calendar.MONTH, MAXPREDAY);
+		
+		return scheduleDao.availableSchedules(now,end);
 	}
 
 	

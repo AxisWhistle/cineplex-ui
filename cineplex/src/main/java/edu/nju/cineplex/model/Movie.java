@@ -1,6 +1,6 @@
 package edu.nju.cineplex.model;
 
-import java.sql.Date;
+import java.util.Calendar;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -30,15 +30,18 @@ public class Movie {
 	private String actor;//主演
 	private String type;//影片类型
 	private int duration;//持续的时长
+	private String language;
+	
+	private String director;
 	
 	@OneToMany(mappedBy="movie")
 	@LazyCollection(LazyCollectionOption.FALSE)
 	private Set<Schedule> schedules;
 	
 	//影片下线时间
-	private Date offTime;
+	private Calendar offTime;
 	//影片上线时间
-	private Date onTime;
+	private Calendar onTime;
 	
 	public void setSchedules(Set<Schedule> schedules) {
 		this.schedules = schedules;
@@ -113,16 +116,29 @@ public class Movie {
 	public void setQuestions(Set<Question> questions) {
 		this.questions = questions;
 	}
-	public Date getOffTime() {
+	
+	public String getDirector() {
+		return director;
+	}
+	public void setDirector(String director) {
+		this.director = director;
+	}
+	public String getLanguage() {
+		return language;
+	}
+	public void setLanguage(String language) {
+		this.language = language;
+	}
+	public Calendar getOffTime() {
 		return offTime;
 	}
-	public void setOffTime(Date offTime) {
+	public void setOffTime(Calendar offTime) {
 		this.offTime = offTime;
 	}
-	public Date getOnTime() {
+	public Calendar getOnTime() {
 		return onTime;
 	}
-	public void setOnTime(Date onTime) {
+	public void setOnTime(Calendar onTime) {
 		this.onTime = onTime;
 	}
 

@@ -25,5 +25,7 @@ public interface ScheduleService {
 
 	public boolean mergeSchedule(Schedule schedule);
 
+	public List<Schedule> futureSchedules();
+
 
 }
