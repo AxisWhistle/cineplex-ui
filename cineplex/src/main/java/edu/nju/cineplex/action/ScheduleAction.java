@@ -114,7 +114,7 @@ public class ScheduleAction extends BaseAction {
 		}
 		int i = 0;
 		for(List<ScheduleInfo> l :schedulelist){
-			System.out.println("i");
+//			System.out.println("i");
 			for(ScheduleInfo ss:l){
 				System.out.println(ss.getMovie().getName()+"---"+ss.getDay()+ss.getWeekday()+ss.getTime());
 			}

@@ -1,7 +1,5 @@
-<%@page import="java.util.List"%>
 <%@page import="edu.nju.cineplex.vo.ScheduleInfo"%>
-<%@page import="java.text.SimpleDateFormat"%>
-<%@page import="java.util.Date"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
@@ -36,19 +34,13 @@
 						<li><a onclick="change(4)">7月2日 周四</a></li>
 						<li><a onclick="change(5)">7月3日 周五</a></li>
 						<li><a onclick="change(6)">7月4日 周六</a></li>
+						<li><a onclick="change(6)">7月5日 周日</a></li>
 					</ul>
 				</div>
 				<div id="screens">
-					<%
-						List<List<ScheduleInfo>> array = (List<List<ScheduleInfo>>) request
-								.getAttribute("schedulelist");
-						int i = 0;
-						for (List<ScheduleInfo> list : array) {
-							i++;
-					%>
-					<table id="table${i}" class="table table-hover"
-						contenteditable="true">
-						<thead>
+				<c:forEach items="${schedulelist }" var="sl"  varStatus="i">
+					<table id="table${i.index}" class="table table-hover "contenteditable="true">
+					<thead>
 							<tr>
 								<th>#</th>
 								<td>放映时间</td>
@@ -58,26 +50,17 @@
 							</tr>
 						</thead>
 						<tbody>
-							<%
-								int s = 0;
-									for (ScheduleInfo si : list) {
-										s++;
-							%>
-							<tr>
-								<td><p>${ s }</p></td>
+							<c:forEach items="${sl}" var="si">
+							<td><p>${ si.movie.name}</p></td>
 								<td><p>${si.time }</p></td>
 								<td><p>${si.hall }</p></td>
 								<td><p>${si.remain }</p></td>
 								<td><a href="buyTickets_${si.id}">选座购票</a></td>
-							</tr>
-							<%
-								}
-							%>
+							</c:forEach>
 						</tbody>
 					</table>
-					<%
-						}
-					%>
+				</c:forEach>
+					
 
 				</div>
 			</div>

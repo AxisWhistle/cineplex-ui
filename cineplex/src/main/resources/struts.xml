@@ -59,7 +59,7 @@
         
         <action name="buyTickets_*" class="edu.nju.cineplex.action.TicketAction" method="buyTickets">
             <param name="scheduleId">{1}</param>
-            <result name="input">view/buyticket.jsp</result>
+            <result name="input">view/seatchoose.jsp</result>
             <result name="success" type="redirect">index#movie</result>
         </action>
         
@@ -69,7 +69,7 @@
         
         <action name="dayMovieSchedule_*" class="edu.nju.cineplex.action.ScheduleAction" method="dayMovieSchedule">
             <param name="movieId">{1}</param>
-            <result name="success">index#movie</result>
+            <result name="success">view/screenings.jsp</result>
         </action>
         
          <action name="member_*" class="edu.nju.cineplex.action.UserAction" method="member">
