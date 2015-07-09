@@ -72,13 +72,9 @@
 												<li class="active"><a href="#banner">首页</a></li>
 												<li><a href="#movie">正在热映</a></li>
 												<li><a href="#future">即将上映</a></li>
-												<li>
+												
 											</ul>
-											<form class="navbar-form navbar-left" role="search">
-													<div class="form-group">
-												    	<input type="text" class="form-control" placeholder="Search">
-												  	</div>
-											</form>
+											
 											<ul class="nav navbar-nav navbar-right">
 												<s:if test="#session.user==null">
 													<li><a href="#" data-toggle="modal" data-target="#login">登录</a></li>

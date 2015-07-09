@@ -41,8 +41,7 @@
 				<div id="screens" class="tab-content">
 					<c:forEach items="${schedulelist }" var="sl" varStatus="i">
 						<div role="tabpanel" class="tab-pane " id="t${i.index+1 }">
-							<table id="table${i.index}" class="table table-hover "
-								contenteditable="true">
+							<table class="table schedule display"  cellspacing="0" width="100%">
 								<thead>
 									<tr>
 										<th>#</th>
@@ -71,5 +70,11 @@
 			<div class="col-md-2"></div>
 		</div>
 	</div>
+	<script type="text/javascript">
+	$(document).ready(function() {
+		$('.schedule').DataTable();
+	}
+	</script>
 </body>
+
 </html>

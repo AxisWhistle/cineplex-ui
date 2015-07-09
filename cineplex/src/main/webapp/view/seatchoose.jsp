@@ -8,10 +8,9 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>cineplex-choose-seat</title>
 
-<link href="http://libs.baidu.com/bootstrap/3.0.3/css/bootstrap.min.css"
-	rel="stylesheet">
-<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
-<script src="http://libs.baidu.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+<%@ include file="common/css.jsp"%>
+<%@ include file="common/js.jsp"%>
+<link href="assets/css/square/red.css" rel="stylesheet">
 
 <link href="seatchoose.css" rel="stylesheet">
 
@@ -95,4 +94,101 @@
 		</div>
 	</div>
 </body>
+
+
+
+<script>
+          $(document).ready(function(){
+          	var price=0;
+          	var $discount=$('#dis').val();
+            var callbacks_list = $('.seatlist ul');
+            $('.seatbox').on('ifChecked', function(event){
+            	var seatinfo=this.id.split("-");
+            	var seatdetail=seatinfo[0]+"排"+seatinfo[1]+"座";
+              callbacks_list.append('<li class="help-block seat'+this.id+'"><span class="seat">' + seatdetail + '</span>已锁定</li>');
+              price+=${sessionScope.schedule.price};
+             
+              
+              $('#price')[0].value=price;
+              $('.discount').html($discount*price);
+            });
+            $('.seatbox').on('ifUnchecked', function(event){
+              $('.seat'+this.id).remove();
+              price-=${sessionScope.schedule.price};
+            
+              $('#price')[0].value=price;
+              $('.discount').html($discount*price);
+            });
+          $('.seatbox').iCheck({
+              checkboxClass: 'icheckbox_square-red',
+              radioClass: 'iradio_square-red',
+              increaseArea: '20%'
+            });
+          
+          $('#buyForm')
+          .bootstrapValidator({
+              message: 'This value is not valid',
+              feedbackIcons: {
+                  valid: 'glyphicon glyphicon-ok',
+                  invalid: 'glyphicon glyphicon-remove',
+                  validating: 'glyphicon glyphicon-refresh'
+              }
+          })
+          .on('success.form.bv', function(e) {
+              // Prevent form submission
+              e.preventDefault();
+
+              // Get the form instance
+              var $form = $(e.target);
+
+              // Get the BootstrapValidator instance
+              var bv = $form.data('bootstrapValidator');
+
+              // Use Ajax to submit form data
+              $.ajax({
+              	url:$form.attr('action'),
+              	type:'POST',
+              	dataType:'json',
+              	data: $form.serialize(),
+              	success:function(data){
+              		$form.find(":submit").removeAttr("disabled");
+              		if(data.msg=="1")
+              			window.location.href="index#movie";
+              		else
+              			alert(data.msg);
+              		}
+              })
+             
+          });
+          
+          
+          $('.seatlist .gender').on('ifChecked', function() {
+                  var $container = $('[data-topic="0"]');
+                  $container.toggle();
+
+                  var display = $container.css('display');
+                  
+                          $('#buyForm').bootstrapValidator('addField', 'id', {
+                              validators: {
+                                  notEmpty: {
+                                      message: '请输入会员卡号'
+                                  }
+                              }
+                          });
+	                      $('#buyForm').bootstrapValidator('addField', 'password', {
+	                          validators: {
+	                              notEmpty: {
+	                                  message: '请输入会员卡密码'
+	                              }
+	                          }
+	                      });
+                         
+              });
+          
+          
+          
+         
+          });
+</script>
+<script type="text/javascript" href="seatchoose.js"></script>
 </html>

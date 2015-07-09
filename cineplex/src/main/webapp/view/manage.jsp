@@ -69,12 +69,13 @@
 
 										<!-- Collect the nav links, forms, and other content for toggling -->
 										<div class="collapse navbar-collapse scrollspy smooth-scroll" id="navbar-collapse-1">
-											<ul class="nav navbar-nav navbar-right">
+											<ul class="nav navbar-nav">
 												<li><a href="index#banner">首页</a></li>
 												<li><a href="index#movie">正在热映</a></li>
 												<li><a href="index#future">即将上映</a></li>
-												
-												
+												</ul>
+											
+											<ul class="nav navbar-nav navbar-right">
 												<s:if test="#session.user==null">
 													<li><a href="#" data-toggle="modal" data-target="#login">登录</a></li>
 													<li><a href="#" data-toggle="modal" data-target="#register">注册</a></li>

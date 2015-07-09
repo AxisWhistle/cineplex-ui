@@ -59,7 +59,7 @@
         
         <action name="buyTickets_*" class="edu.nju.cineplex.action.TicketAction" method="buyTickets">
             <param name="scheduleId">{1}</param>
-            <result name="input">view/seatchoose.jsp</result>
+            <result name="input">view/buyticket.jsp</result>
             <result name="success" type="redirect">index#movie</result>
         </action>
         
