@@ -74,7 +74,7 @@
 							语言：<span class="movie-lang">${movie.language }</span>
 						</p>
 						<p>
-							片场：<span class="movie-duration-num">${movie.duration }</span>
+							片长：<span class="movie-duration-num">${movie.duration }</span>
 						</p>
 						<p>
 							导演：<span class="movie-director">${movie.director }</span>
