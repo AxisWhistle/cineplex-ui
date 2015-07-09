@@ -100,9 +100,11 @@ public class ScheduleAction extends BaseAction {
 			String day=DateFormater.CalendarToString(cs);
 			for(int i = 0;i<7;i++){
 				if(day.equals(c[i])){
+
 //					System.out.println("here");
 					if(cs.after(nowCalendar)){
-						schedulelist.get(i).add(new ScheduleInfo(s));
+						ScheduleInfo ss =new ScheduleInfo(s);
+						schedulelist.get(i).add(ss);
 					}
 					
 					break;
@@ -110,13 +112,13 @@ public class ScheduleAction extends BaseAction {
 			}
 			
 		}
-//		int i = 0;
-//		for(List<ScheduleInfo> l :schedulelist){
-//			System.out.println("i");
-//			for(ScheduleInfo ss:l){
-//				System.out.println(ss.getMovie().getName()+"---"+ss.getDay()+ss.getWeekday()+ss.getTime());
-//			}
-//		}
+		int i = 0;
+		for(List<ScheduleInfo> l :schedulelist){
+			System.out.println("i");
+			for(ScheduleInfo ss:l){
+				System.out.println(ss.getMovie().getName()+"---"+ss.getDay()+ss.getWeekday()+ss.getTime());
+			}
+		}
 		
 		
 //		Calendar day=Calendar.getInstance();

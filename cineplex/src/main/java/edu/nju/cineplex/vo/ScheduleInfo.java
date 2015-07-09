@@ -25,7 +25,7 @@ public class ScheduleInfo {
     	 id=schedule.getId();
     	 Calendar calendar = schedule.getTime();
     	 day = DateFormater.CalendarToString(calendar);
-    	 weekday=weeks[calendar.get(Calendar.DAY_OF_WEEK)];
+    	 weekday=weeks[calendar.get(Calendar.DAY_OF_WEEK)-1];
     	 time = calendar.get(Calendar.HOUR_OF_DAY)+":"+calendar.get(Calendar.MINUTE);
     	 Hall h=schedule.getHall();
     	 hall = h.getName();
