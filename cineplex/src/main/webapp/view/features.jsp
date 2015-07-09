@@ -35,8 +35,8 @@
 		<div class="search-div">
 			<h5>影片查询</h5>
 			<s:form action="search">
-				<input type="text" placeholder="请输入搜索关键字" name="name" />
-				<a class="btn btn-primary"> <span
+				<input type="text" placeholder="请输入搜索关键字" id="search-name-input" name="name" />
+				<a class="btn btn-primary button" data-filter="name"><span
 					class="glyphicon glyphicon-search search-span-btn"
 					aria-hidden="true"></span>
 				</a>
