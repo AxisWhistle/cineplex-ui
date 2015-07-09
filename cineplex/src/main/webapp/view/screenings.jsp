@@ -8,60 +8,64 @@
 <html>
 <head>
 <title>Cineplex-Screen-choose</title>
-
-<link href="http://libs.baidu.com/bootstrap/3.0.3/css/bootstrap.min.css"
-	rel="stylesheet">
-<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
-<script src="http://libs.baidu.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
-
+<%@ include file="common/css.jsp"%>
+<%@ include file="common/js.jsp"%>
 <link href="screenings.css" rel="stylesheet">
-<script src="screenings.js"></script>
-
 </head>
-<body onload="change(1)">
+<body>
 	<div class="container-fluid" id="content">
 		<div class="row">
 			<div class="col-md-12" id="navigation"></div>
 		</div>
 		<div class="row">
 			<div class="col-md-2"></div>
-			<div class="col-md-8">
+			<div class="col-md-8 container" role="tabpanel">
 				<div id="menu">
-					<ul class="nav nav-pills">
-						<li class="active"><a onclick="change(1)">6月29日 今天</a></li>
-						<li><a onclick="change(2)">6月30日 周二</a></li>
-						<li><a onclick="change(3)">7月1日 周三</a></li>
-						<li><a onclick="change(4)">7月2日 周四</a></li>
-						<li><a onclick="change(5)">7月3日 周五</a></li>
-						<li><a onclick="change(6)">7月4日 周六</a></li>
-						<li><a onclick="change(6)">7月5日 周日</a></li>
+					<ul class="nav nav-pills" role="tablist" id="mytab">
+						<li class="active" role="presentation"><a href="#t1"
+							aria-controls="t1" role="tab" data-toggle="tab">6月29日 今天</a></li>
+						<li role="presentation"><a href="#t2" aria-controls="t2"
+							role="tab" data-toggle="tab">7月1日 周三</a></li>
+						<li role="presentation"><a href="#t3" aria-controls="t3"
+							role="tab" data-toggle="tab">7月2日 周四</a></li>
+						<li role="presentation"><a href="#t4" aria-controls="t4"
+							role="tab" data-toggle="tab">7月3日 周五</a></li>
+						<li role="presentation"><a href="#t5" aria-controls="t5"
+							role="tab" data-toggle="tab">7月4日 周六</a></li>
+						<li role="presentation"><a href="#t6" aria-controls="t6"
+							role="tab" data-toggle="tab">7月5日 周日</a></li>
+						<li role="presentation"><a href="#t7" aria-controls="t7"
+							role="tab" data-toggle="tab">6月30日 周二</a></li>
 					</ul>
 				</div>
-				<div id="screens">
-				<c:forEach items="${schedulelist }" var="sl"  varStatus="i">
-					<table id="table${i.index}" class="table table-hover "contenteditable="true">
-					<thead>
-							<tr>
-								<th>#</th>
-								<td>放映时间</td>
-								<td>放映厅</td>
-								<td>剩余票数</td>
-								<td>选座购票</td>
-							</tr>
-						</thead>
-						<tbody>
-							<c:forEach items="${sl}" var="si">
-							<td><p>${ si.movie.name}</p></td>
-								<td><p>${si.time }</p></td>
-								<td><p>${si.hall }</p></td>
-								<td><p>${si.remain }</p></td>
-								<td><a href="buyTickets_${si.id}">选座购票</a></td>
-							</c:forEach>
-						</tbody>
-					</table>
-				</c:forEach>
-					
-
+				<div id="screens" class="tab-content">
+					<c:forEach items="${schedulelist }" var="sl" varStatus="i">
+						<div role="tabpanel" class="tab-pane " id="t${i.index+1 }">
+							<table id="table${i.index}" class="table table-hover "
+								contenteditable="true">
+								<thead>
+									<tr>
+										<th>#</th>
+										<td>放映时间</td>
+										<td>放映厅</td>
+										<td>剩余票数</td>
+										<td>选座购票</td>
+									</tr>
+								</thead>
+								<tbody>
+									<c:forEach items="${sl}" var="si" varStatus="j">
+										<tr>
+											<td><p>${ j.index+1}</p></td>
+											<td><p>${si.time }</p></td>
+											<td><p>${si.hall }</p></td>
+											<td><p>${si.remain }</p></td>
+											<td><a href="buyTickets_${si.id}">选座购票</a></td>
+										</tr>
+									</c:forEach>
+								</tbody>
+							</table>
+						</div>
+					</c:forEach>
 				</div>
 			</div>
 			<div class="col-md-2"></div>
