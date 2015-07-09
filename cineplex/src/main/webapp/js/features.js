@@ -19,6 +19,11 @@ $(function() {
 			var checkedType = $('.button-type-group').find('.is-checked')
 					.text();
 			return type.indexOf(checkedType) > -1;
+		},
+		name : function() {
+			var key = $("#search-name-input").val();
+			var name = $(this).find('.movie-name').text();
+			return name.indexOf(key) > -1;
 		}
 	};
 	// change is-checked class on buttons
@@ -42,4 +47,12 @@ $(function() {
 		});
 	});
 
+	$('.search-div .button').click(function() {
+		var filterValue = $(this).attr('data-filter');
+		// use filterFn if matches value
+		filterValue = filterFns[filterValue] || filterValue;
+		$grid.isotope({
+			filter : filterValue
+		});
+	});
 });
