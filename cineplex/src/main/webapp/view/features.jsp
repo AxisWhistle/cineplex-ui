@@ -242,13 +242,7 @@
 						<p class="mt10">
 							<c:url var="dayMovieScheduleUrl"
 								value="/cineplex/dayMovieSchedule">
-								<c:param name="startDate"
-									value="<%=new SimpleDateFormat("yyyy-MM-dd")
-								.format(new Date(System.currentTimeMillis()))%>"></c:param>
-								<c:param name="endDate"
-									value="<%=new SimpleDateFormat("yyyy-MM-dd")
-								.format(new Date(System.currentTimeMillis() + 7
-										* 24 * 3600 * 1000))%>"></c:param>
+								<c:param name="movieId" value="${movie.id }"></c:param>
 							</c:url>
 
 							<a class="btn btn-primary btn-select"
@@ -269,7 +263,7 @@
 							语言：<span class="movie-lang">${movie.language }</span>
 						</p>
 						<p>
-							片场 ： <span class="movie-duration-num">${movie.duration }</span>
+							片场：<span class="movie-duration-num">${movie.duration }</span>
 						</p>
 						<p>
 							导演：<span class="movie-director">${movie.director }</span>
