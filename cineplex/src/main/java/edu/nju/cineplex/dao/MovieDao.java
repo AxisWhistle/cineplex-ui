@@ -1,6 +1,6 @@
 package edu.nju.cineplex.dao;
 
-import java.sql.Date;
+import java.util.Calendar;
 import java.util.List;
 
 import edu.nju.cineplex.model.Movie;
@@ -19,7 +19,7 @@ public interface MovieDao {
 
 	public int getMaxId();
 
-	public List<Movie> getMoviesOnAfter(Date instance);
+	public List<Movie> getMoviesOnAfter(Calendar instance);
 
-	public List<Movie> getMoviesOffAt(Date date);
+	public List<Movie> getMoviesOffAt(Calendar date);
 }

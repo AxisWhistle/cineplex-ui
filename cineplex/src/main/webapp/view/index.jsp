@@ -130,34 +130,17 @@
 					<div class="row">
 						<div class="flexslider">
 							<ul class="slides">
-								<li>
-						        	<img src="assets/images/s1.jpg" alt="" />
-									<div class="slides_info">
-										<h4>FlexSlider!</h4>
-										<p>多功能图片切换效果</p>
-									</div>
-								</li>
-								<li>
-									<img src="assets/images/sc2.jpg" alt="" />
-									<div class="slides_info">
-										<h4>jquery flexslider滑块幻灯片插件图片和文字结合焦点图片切换</h4>
-									</div>
-								</li>
-								<li>
-									<img src="assets/images/s3.jpg" alt="" />
-									<div class="slides_info">
-										<h4>FlexSlider</h4>
-										<p>FlexSlider是一款基于的jQuery内容滚动插件。它能让你轻松的创建内容滚动的效果，具有非常高的可定制性。它是将UL列表转换成内容滚动的列表，可以自动播放，或者使用导航按钮和键盘来控制。<a href="http://www.woothemes.com/flexslider/" target="_blank" rel="nofollow">FlexSlider官网</a> <a href="http://www.helloweba.com/view-blog-265.html" target="_blank">中文使用教程</a></p>
-									</div>
-								</li>
-								<li>
-									<img src="assets/images/s4.jpg" alt="" />
-									<div class="slides_info">
-
-										<h4>FlexSlider</h4>
-										<p>FlexSlider is a free responsive jQuery slider toolkit. Supported in all major browsers with custom navigation options and touch swipe support.</p>
-									</div>
-								</li>
+								<s:iterator value="#request.sliderlist">
+									<li>
+										<a href="${target }"><img src="${imgUrl}" alt=""/></a>
+										<div class="slides_info">
+											<h4>${title }</h4>
+											<p>${content }</p>
+										</div>
+									</li>
+								</s:iterator>
+							
+								
 							</ul>
 						</div>		
 											

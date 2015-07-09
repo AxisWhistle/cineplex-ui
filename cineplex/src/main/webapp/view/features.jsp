@@ -243,6 +243,10 @@
 							<c:url var="dayMovieScheduleUrl"
 								value="/cineplex/dayMovieSchedule">
 								<c:param name="movieId" value="${movie.id }"></c:param>
+								<c:param name="startDate"
+									value="1"></c:param>
+								<c:param name="endDate"
+									value="2"></c:param>
 							</c:url>
 
 							<a class="btn btn-primary btn-select"

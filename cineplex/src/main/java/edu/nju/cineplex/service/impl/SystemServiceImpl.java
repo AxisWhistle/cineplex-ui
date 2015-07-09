@@ -79,7 +79,7 @@ public class SystemServiceImpl implements SystemService {
 
 	@Override
 	public void activityAuto(Calendar calendar) {
-		List<Movie> movies=movieDao.getMoviesOffAt(new Date(calendar.getTimeInMillis()));
+		List<Movie> movies=movieDao.getMoviesOffAt(calendar);
 		
 		for(Movie movie:movies){
 			Set<Question> questions=movie.getQuestions();

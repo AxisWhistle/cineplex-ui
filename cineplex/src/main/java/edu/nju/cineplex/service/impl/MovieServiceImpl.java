@@ -1,6 +1,5 @@
 package edu.nju.cineplex.service.impl;
 
-import java.sql.Date;
 import java.util.Calendar;
 import java.util.List;
 
@@ -35,8 +34,8 @@ public class MovieServiceImpl implements MovieService {
 
 	@Override
 	public List<Movie> getFutureMovies() {
-		Date date=new Date(Calendar.getInstance().getTimeInMillis());
-		return movieDao.getMoviesOnAfter(date);
+//		Date Calendar.getInstance()=new Date(Calendar.getInstance().getTimeInMillis());
+		return movieDao.getMoviesOnAfter(Calendar.getInstance());
 	}
 
 	@Override

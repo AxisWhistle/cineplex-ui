@@ -39,23 +39,23 @@ public class MovieAction extends BaseAction {
 		return SUCCESS;
 	}
 	
-	public String search(){
-		List<MovieInfo> movieInfos=(List<MovieInfo>) session.get("movielist");
-		List<MovieInfo> forwardInfos=(List<MovieInfo>) session.get("forwardlist");
-		List<MovieInfo> searchInfos=new ArrayList<MovieInfo>();
-		for(int i =0;i<movieInfos.size();i++){
-			if(movieInfos.get(i).getName().contains(name)){
-				searchInfos.add(movieInfos.get(i));
-			}
-		}
-		for(int i =0;i<forwardInfos.size();i++){
-			if(forwardInfos.get(i).getName().contains(name)){
-				searchInfos.add(forwardInfos.get(i));
-			}
-		}
-		session.put("searchlist", searchInfos);
-		return SUCCESS;
-	}
+//	public String search(){
+//		List<MovieInfo> movieInfos=(List<MovieInfo>) session.get("movielist");
+//		List<MovieInfo> forwardInfos=(List<MovieInfo>) session.get("forwardlist");
+//		List<MovieInfo> searchInfos=new ArrayList<MovieInfo>();
+//		for(int i =0;i<movieInfos.size();i++){
+//			if(movieInfos.get(i).getName().contains(name)){
+//				searchInfos.add(movieInfos.get(i));
+//			}
+//		}
+//		for(int i =0;i<forwardInfos.size();i++){
+//			if(forwardInfos.get(i).getName().contains(name)){
+//				searchInfos.add(forwardInfos.get(i));
+//			}
+//		}
+//		session.put("searchlist", searchInfos);
+//		return SUCCESS;
+//	}
 	
 	private String uploadCover(){
 		String result=null;

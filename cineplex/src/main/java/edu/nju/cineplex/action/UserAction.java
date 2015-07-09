@@ -21,6 +21,7 @@ public class UserAction extends BaseAction{
 	private String id;
 	private String password;
 	private String msg;
+	private String confirm;
 	
 	
 	private Member member=new Member();
@@ -41,6 +42,7 @@ public class UserAction extends BaseAction{
 	}
 	
 	public String register(){
+		msg="0";
 		if(member.getName()==null)
 			return INPUT;
 			
@@ -48,6 +50,8 @@ public class UserAction extends BaseAction{
 		member.setCity(city);
 		User user=memberService.register(member, password);
 		session.put("user", user);
+		id=user.getId();
+		msg="1";
 		
 		return SUCCESS;
 	}
@@ -137,6 +141,14 @@ public class UserAction extends BaseAction{
 
 	public void setCity(int city) {
 		this.city = city;
+	}
+
+	public String getConfirm() {
+		return confirm;
+	}
+
+	public void setConfirm(String confirm) {
+		this.confirm = confirm;
 	}
 
 

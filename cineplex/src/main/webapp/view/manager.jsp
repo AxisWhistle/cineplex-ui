@@ -8,16 +8,25 @@
 	<div class="space"></div>
   	<!-- Nav tabs -->
 	<ul class="nav nav-tabs" role="tablist">
-    	<li role="presentation" class="active"><a href="#hallMng" aria-controls="hallMng" role="tab" data-toggle="tab">放映厅管理</a></li>
-    	<li role="presentation"><a href="#scheduleMng" aria-controls="scheduleMng" role="tab" data-toggle="tab">放映计划管理</a></li>
+	<li role="presentation" class="active"><a href="#scheduleMng" aria-controls="scheduleMng" role="tab" data-toggle="tab">放映计划管理</a></li>
+    	<li role="presentation" ><a href="#hallMng" aria-controls="hallMng" role="tab" data-toggle="tab">放映厅管理</a></li>
+    	
     	<li role="presentation"><a href="#clerkMng" aria-controls="clerkMng" role="tab" data-toggle="tab">添加服务员</a></li>
     	<li role="presentation"><a href="#analysis" aria-controls="analysis" role="tab" data-toggle="tab">统计信息</a></li>
   	</ul>
 
   	<!-- Tab panes -->
   	<div class="tab-content">
-    	<div role="tabpanel" class="tab-pane active" id="hallMng">
+    	
+    	
+    	
+    	<div role="tabpanel" class="tab-pane active" id="scheduleMng">
     	<div class="space"></div>
+			<s:include value="scheduleList.jsp"></s:include>
+		</div>
+		
+		<div role="tabpanel" class="tab-pane" id="hallMng">
+    	
     	<a class="btn btn-primary" data-toggle="collapse" href="#hallTab" aria-expanded="false" aria-controls="collapseExample">
 		  新增放映厅
 		</a>
@@ -93,11 +102,6 @@
 			
 
     	</div>
-    	
-    	
-    	<div role="tabpanel" class="tab-pane" id="scheduleMng">
-			<s:include value="scheduleList.jsp"></s:include>
-		</div>
 		
     	<div role="tabpanel" class="tab-pane" id="clerkMng">
 			<div class="space"></div>

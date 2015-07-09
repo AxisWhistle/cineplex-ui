@@ -8,8 +8,9 @@
 	<div class="space"></div>
   	<!-- Nav tabs -->
 	<ul class="nav nav-tabs" role="tablist" id="mytab">
-		<li role="presentation"  class="active"><a href="#scheduleMng" aria-controls="scheduleMng" role="tab" data-toggle="tab">放映计划管理</a></li>
-    	<li role="presentation"><a href="#movieMng" aria-controls="movieMngl" role="tab" data-toggle="tab">影片管理</a></li>
+	<li role="presentation"  class="active"><a href="#movieMng" aria-controls="movieMngl" role="tab" data-toggle="tab">影片管理</a></li>
+		<li role="presentation" ><a href="#scheduleMng" aria-controls="scheduleMng" role="tab" data-toggle="tab">放映计划管理</a></li>
+    	
     	
     	<li role="presentation"><a href="#activityMng" aria-controls="activityMng" role="tab" data-toggle="tab">活动管理</a></li>
     	<li role="presentation"><a href="#memberInfo" aria-controls="memberInfo" role="tab" data-toggle="tab">会员信息</a></li>
@@ -18,16 +19,10 @@
   	<!-- Tab panes -->
   	<div class="tab-content">
   	
-  		<div role="tabpanel" class="tab-pane active" id="scheduleMng">
-  	
-  			<div class="space"></div>
-    		<a href="#" class="btn btn-primary" data-toggle="modal" data-target="#scheduleModal" data-action="ajax/addSchedule" data-ex="ok">新增放映计划</a>
-    		<div class="space"></div>
-    		<s:include value="scheduleList.jsp"></s:include>
-    	</div>
+  		
   	
   	
-    	<div role="tabpanel" class="tab-pane" id="movieMng">
+    	<div role="tabpanel" class="tab-pane  active" id="movieMng">
     		<div class="space"></div>
     	
     		<a class="btn btn-primary" data-toggle="collapse" href="#movieTab" aria-expanded="false" aria-controls="collapseExample" data-ex="ok">
@@ -85,9 +80,20 @@
 					  		
 					  	</div>
 					  	<div class="form-group">
+					    	<label for="director">导演</label>
+					    	<input type="text" class="form-control" name="movie.director" 
+					    	placeholder="导演名称">
+					  	</div>
+					  	
+					  	<div class="form-group">
 					    	<label for="actor">演员</label>
 					    	<input type="text" class="form-control" name="movie.actor" 
 					    	placeholder="演员名称">
+					  	</div>
+					  	<div class="form-group">
+					    	<label for="language">语言</label>
+					    	<input type="text" class="form-control" name="movie.language" 
+					    	placeholder="语言">
 					  	</div>
 					  	<div class="form-group">
 					    	<label for="introduction">简介</label>
@@ -166,7 +172,13 @@
     	
 
     	</div>
-    	
+    	<div role="tabpanel" class="tab-pane" id="scheduleMng">
+  	
+  			<div class="space"></div>
+    		<a href="#" class="btn btn-primary" data-toggle="modal" data-target="#scheduleModal" data-action="ajax/addSchedule" data-ex="ok">新增放映计划</a>
+    		<div class="space"></div>
+    		<s:include value="scheduleList.jsp"></s:include>
+    	</div>
     	<div role="tabpanel" class="tab-pane" id="activityMng">
     		<div class="space"></div>
     	

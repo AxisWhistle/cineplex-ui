@@ -1,5 +1,9 @@
 package edu.nju.cineplex.vo;
 
+
+import edu.nju.cineplex.model.Movie;
+import edu.nju.cineplex.util.DateFormater;
+
 public class MovieInfo {
 	
 	int id;
@@ -8,14 +12,48 @@ public class MovieInfo {
     String introduction;//影片介绍
     String actor;//主演,可能有多个，用;隔开
     String type;//影片类型，可能有多个，用;隔开
-    int duration;//影片时长,单位为分钟
+    String duration;//影片时长,单位为分钟
     String director;//导演, 可能有多个，用;隔开
     String language;//语言
     String onTime;//上线日期
+    String offTime;
     
+    public MovieInfo(Movie m){
+    	id=m.getId();
+    	cover=m.getCover();
+    	name=m.getName();
+    	introduction=m.getIntroduction();
+    	actor=m.getActor();
+    	type=m.getType();
+//    	duration=m.getDuration();
+    	duration=DateFormater.minutesToDuration(m.getDuration());
+    	director=m.getDirector();
+    	language = m.getLanguage();
+//    	Date timeDate = m.getOnTime();
+//    	SimpleDateFormat s= new SimpleDateFormat("yyyy-MM-dd");
+    	onTime=DateFormater.CalendarToString(m.getOnTime());
+    	offTime=DateFormater.CalendarToString(m.getOffTime());
+//    	System.out.println(onTime);
+    }
+    
+    public Movie toMovie(){
+    	Movie m = new Movie();
+    	m.setCover(cover);
+    	m.setName(name);
+    	m.setIntroduction(introduction);
+    	m.setActor(actor);
+    	m.setType(type);
+    	m.setDuration(DateFormater.StringToMinutes(duration));
+    	m.setDirector(director);
+    	m.setLanguage(language);
+    	m.setOnTime(DateFormater.StringToCalendar(onTime));
+    	m.setOffTime(DateFormater.StringToCalendar(offTime));
+    	
+    	return m;
+    }
     
 	public MovieInfo(int id, String cover, String name, String introduction,
-			String actor, String type, int duration, String director,
+			String actor, String type, String duration, String director,
 			String language, String onTime) {
 		super();
 		this.id = id;
@@ -65,10 +103,10 @@ public class MovieInfo {
 	public void setType(String type) {
 		this.type = type;
 	}
-	public int getDuration() {
+	public String getDuration() {
 		return duration;
 	}
-	public void setDuration(int duration) {
+	public void setDuration(String duration) {
 		this.duration = duration;
 	}
 	public String getDirector() {

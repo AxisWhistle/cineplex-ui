@@ -26,7 +26,7 @@ img.cover{
 	overflow:hidden; 
 }
 .slides_info{
-	position:absolute; top:70px; right:65px; width:420px; padding:10px; background:#333; opacity:.8; color:#fff
+	position:absolute; top:70px; left:65px; width:420px; padding:10px; background:#333; opacity:.8; color:#fff
 }
 .slides img{
 	height:320px;

@@ -67,7 +67,8 @@
             <result name="success">view/search.jsp</result>
         </action>
         
-        <action name="dayMovieSchedule" class="edu.nju.cineplex.action.ScheduleAction" method="dayMovieSchedule">
+        <action name="dayMovieSchedule_*" class="edu.nju.cineplex.action.ScheduleAction" method="dayMovieSchedule">
+            <param name="movieId">{1}</param>
             <result name="success">index#movie</result>
         </action>
         
@@ -92,6 +93,11 @@
             
             <result name="success" type="json"></result>
         </action>
+        <action name="register" class="edu.nju.cineplex.action.UserAction" method="register">
+            
+            <result name="success" type="json"></result>
+        </action>
+        
          <action name="addHall" class="edu.nju.cineplex.action.HallAction" method="addHall">
             
             <result name="success" type="json"></result>

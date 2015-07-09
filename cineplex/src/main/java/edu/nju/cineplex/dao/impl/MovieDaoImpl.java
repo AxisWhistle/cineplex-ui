@@ -1,6 +1,7 @@
 package edu.nju.cineplex.dao.impl;
 
 import java.sql.Date;
+import java.util.Calendar;
 import java.util.List;
 
 import org.hibernate.Criteria;
@@ -56,7 +57,7 @@ public class MovieDaoImpl implements MovieDao {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Movie> getMoviesOnAfter(Date instance) {
+	public List<Movie> getMoviesOnAfter(Calendar instance) {
 		Session session=baseDao.getSession();
 		Criteria criteria=session.createCriteria(Movie.class);
 		criteria.add(Restrictions.gt("offTime", instance));
@@ -65,7 +66,7 @@ public class MovieDaoImpl implements MovieDao {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Movie> getMoviesOffAt(Date date) {
+	public List<Movie> getMoviesOffAt(Calendar date) {
 		Session session=baseDao.getSession();
 		Criteria criteria=session.createCriteria(Movie.class);
 		criteria.add(Restrictions.eq("offTime", date));
