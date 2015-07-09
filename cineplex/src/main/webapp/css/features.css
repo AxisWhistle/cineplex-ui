@@ -5,16 +5,22 @@ h1, h2, h3, h4, h5, h6 {
 .button {
 	min-width: 5px;
 	width: 50px;
-	padding:0px 0px;
+	padding: 0px 0px;
+}
+
+.property-header {
+	margin: 30px auto;
 }
 
 .grid {
 	width: 80%;
 	margin: auto auto;
 }
-.grid-item{
+
+.grid-item {
 	list-style: none;
 }
+
 .movie-list {
 	padding-left: 90px;
 }
@@ -43,8 +49,25 @@ h1, h2, h3, h4, h5, h6 {
 	margin: 0px auto;
 }
 
-.search-div>h5, .search-div>input {
+.search-div form {
+	padding-left: 60px;
+}
+
+.search-div>h5, .search-div>form {
 	display: inline-block;
+}
+
+.search-div a {
+	width: 30px;
+	min-width: 5px;
+	height: 28px;
+	vertical-align: top;
+	padding-left: 7px;
+	padding-top: 5px;
+}
+
+.search-div .search-span-btn {
+	margin: auto auto;
 }
 
 .property-div>h5, .search-div>h5 {
